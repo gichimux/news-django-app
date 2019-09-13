@@ -1,4 +1,6 @@
 {% extends 'all-news/base.html'%}
+{% load bootstrap3 %}
+{% load staticfiles %}
 {% block content %}
 {{block.super}}
 <div class="container">
@@ -7,7 +9,7 @@
    <div class="row">
    {% comment %} displaying news articles {% endcomment %}
    <div class="col-xs-6 col-sm-6 sol-md-6 col-lg-6">
-   <h2 class="text-center"> {{ news_item.title }}</h2>
+   <h2 class="text-center"> <a href="#">{{ news_item.title }}</a></h2>
    </div>
    {% comment %} display news articles {% endcomment %}
    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
@@ -20,4 +22,16 @@
    </div>
    {% endfor%}
    </div>
-{% endblock%}
+   <div class="container-fluid">
+   <form action="{% url 'newsToday'%}" method="post" id="sub_form">
+   {% csrf_token %}
+   {% bootstrap_form letterForm layout='inline'%}
+   <input type="submit" value="subscribe">
+   </form>
+   </div>
+{% endblock %}
+
+{% block scripts %} 
+{{block.super}}
+  <script type="text/javascript" src="{% static 'js/newsletter.js'%}"></script>
+{% endblock %}

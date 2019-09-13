@@ -1,4 +1,4 @@
-{%extends 'all-news/base.html'%} 
+{% extends 'all-news/base.html'%} 
 {% block content %}
 <div class="container">
 
@@ -16,7 +16,7 @@
   {% if articles %}
     {% for article in articles %}
       <div class="col-sm-6 col-md-3">
-          <h1>{{article.title}}</h1>
+         <a href="{{ article.pk}}"> <h1>{{article.title}}</h1></a>
       </div>
     {% endfor %}
   {% endif %}
